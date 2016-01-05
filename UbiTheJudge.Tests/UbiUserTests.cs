@@ -36,8 +36,9 @@ namespace UbiTheJudge.Tests
         {
             List<UserScore> list_of_scores = new List<UserScore>
             {
-                new UserScore {UbiUserId=1,SongId=1,Score=88.1},
-                new UserScore {UbiUserId=1,SongId=2,Score=77.1}
+                new UserScore {UbiUserId=1,SongId=1,Score=88.1m},
+                new UserScore {UbiUserId=1,SongId=2,Score=77.1m},
+                new UserScore {UbiUserId=2,SongId=1,Score=79.9m}
             };
             UbiUser a_user = new UbiUser
             {
@@ -47,5 +48,7 @@ namespace UbiTheJudge.Tests
             };
             CollectionAssert.AreEqual(list_of_scores, a_user.Scores);
         }
+
+
     }
 }

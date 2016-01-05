@@ -45,5 +45,15 @@ namespace UbiTheJudge.Tests
             a_quartet.D2OOA = 1;
             Assert.AreEqual(1, a_quartet.D2OOA);
         }
+
+        [TestMethod]
+        public void QuartetCanHaveTotalScores()
+        {
+            Quartet a_quartet = new Quartet();
+            a_quartet.US_Total = 77.3m;
+            a_quartet.JS_Total = 76.5m;
+            Assert.AreEqual(a_quartet.US_Total, 77.3m);
+            Assert.AreEqual(a_quartet.JS_Total, 76.5m);
+        }
     }
 }

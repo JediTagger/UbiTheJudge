@@ -9,7 +9,7 @@ namespace UbiTheJudge.Models
     public class Song
     {
         public int DaySung { get; set; }
-        public double JudgesScore { get; set; }
+        public decimal JudgesScore { get; set; }
         public string Name { get; set; }
         public int OrderSung { get; set; }
         [Key]

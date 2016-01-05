@@ -7,7 +7,7 @@ namespace UbiTheJudge.Models
 {
     public class UserScore
     {
-        public double Score { get; set; }
+        public decimal Score { get; set; }
         public int SongId { get; set; }
         public int UbiUserId { get; set; }
     }

@@ -23,14 +23,14 @@ namespace UbiTheJudge.Tests
             a_song.Name = "Bob";
             a_song.DaySung = 1;
             a_song.OrderSung = 1;
-            a_song.JudgesScore = 78.2;
+            a_song.JudgesScore = 78.2m;
             a_song.QuartetId = a_quartet.QuartetId;
             Assert.AreEqual(a_song.QuartetId, a_quartet.QuartetId);
             Assert.AreEqual(1, a_song.SongId);
             Assert.AreEqual("Bob", a_song.Name);
             Assert.AreEqual(1, a_song.DaySung);
             Assert.AreEqual(1, a_song.OrderSung);
-            Assert.AreEqual(78.2, a_song.JudgesScore);
+            Assert.AreEqual(78.2m, a_song.JudgesScore);
         }
     }
 }
