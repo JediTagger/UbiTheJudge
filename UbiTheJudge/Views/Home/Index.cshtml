@@ -1,4 +1,29 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+<div class="centered">
+    <img src="http://cdn.toonvectors.com/images/89/43771/toonvectors-43771-940.jpg" width="200" height="200" class="top-10px"/>
+</div>
+<br />
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            
+        <div><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></div>
+    }
+}
+else
+{
+    @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="btn btn-default top-10px", @style = "width:100%" })
+    <br />
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-default top-10px", @style="width:100%" })
+}
+
+
+<!--
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -29,3 +54,4 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+-->
