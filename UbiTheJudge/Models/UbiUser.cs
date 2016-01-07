@@ -15,7 +15,9 @@ namespace UbiTheJudge.Models
         [MinLength(3)]
         [RegularExpression(@"^[a-zA-Z\d]+[-_a-zA-Z\d]{0,2}[a-zA-Z\d]+")]
         public string Name { get; set; }
-
+        //TD means Total Differential.  The total difference between the users scores and the judges scores.
+        //This is to rank the users by who got closest to the "right" (the judges) score.
+        public decimal TD { get; set; }
         public List<UserScore> Scores { get; set; }
 
         //What does this do??

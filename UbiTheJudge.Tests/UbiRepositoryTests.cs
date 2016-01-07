@@ -385,5 +385,73 @@ namespace UbiTheJudge.Tests
             Assert.AreEqual("MC4", users_ranking[1].Name);
             Assert.AreEqual("CrossRoads", users_ranking[2].Name);
         }
+
+        [TestMethod]
+        public void UbiRepositoryTallyTotalDifferentialForOneUser()
+        {
+            List<UserScore> all_scores = new List<UserScore>
+            {
+                new UserScore {UbiUserId=1,SongId=1,Score=77.2m},
+                new UserScore {UbiUserId=1,SongId=2,Score=76.7m},
+                new UserScore {UbiUserId=1,SongId=3,Score=75.7m},
+                new UserScore {UbiUserId=2,SongId=1,Score=74.7m}
+            };
+            mock_score_set.Object.AddRange(all_scores);
+            ConnectMocksToDataStore(all_scores);
+            List<Song> all_songs = new List<Song>
+            {
+                new Song {SongId=1,QuartetId=1,JudgesScore=78.7m},
+                new Song {SongId=2,QuartetId=1,JudgesScore=75.7m},
+                new Song {SongId=3,QuartetId=2,JudgesScore=74.7m}
+            };
+            mock_song_set.Object.AddRange(all_songs);
+            ConnectMocksToDataStore(all_songs);
+            int user_id = 1;
+            decimal total_differential = repo.TallyTotalDifferential(user_id);
+            Assert.AreEqual(3.5m, total_differential);
+        }
+
+        [TestMethod]
+        public void UbiRepositoryRankUsersByTotalDifferential()
+        {
+            List<UbiUser> all_users = new List<UbiUser>
+            {
+                new UbiUser {Name = "Bob",UbiUserId=1},
+                new UbiUser {Name = "Sally",UbiUserId=2},
+                new UbiUser {Name = "Austin",UbiUserId=3}
+            };
+            mock_user_set.Object.AddRange(all_users);
+            ConnectMocksToDataStore(all_users);
+            List<UserScore> all_scores = new List<UserScore>
+            {
+                new UserScore {UbiUserId=1,SongId=1,Score=60.1m},
+                new UserScore {UbiUserId=1,SongId=2,Score=61.1m},
+                new UserScore {UbiUserId=1,SongId=3,Score=62.1m},
+                new UserScore {UbiUserId=1,SongId=4,Score=63.1m},
+                new UserScore {UbiUserId=2,SongId=1,Score=71.1m},
+                new UserScore {UbiUserId=2,SongId=2,Score=72.1m},
+                new UserScore {UbiUserId=2,SongId=3,Score=73.1m},
+                new UserScore {UbiUserId=2,SongId=4,Score=74.1m},
+                new UserScore {UbiUserId=3,SongId=1,Score=73.1m},
+                new UserScore {UbiUserId=3,SongId=2,Score=74.1m},
+                new UserScore {UbiUserId=3,SongId=3,Score=75.1m},
+                new UserScore {UbiUserId=3,SongId=4,Score=76.1m}
+            };
+            mock_score_set.Object.AddRange(all_scores);
+            ConnectMocksToDataStore(all_scores);
+            List<Song> all_songs = new List<Song>
+            {
+                new Song {SongId=1,QuartetId=1,JudgesScore=71.5m},
+                new Song {SongId=2,QuartetId=1,JudgesScore=72.5m},
+                new Song {SongId=3,QuartetId=2,JudgesScore=73.5m},
+                new Song {SongId=4,QuartetId=2,JudgesScore=74.5m}
+            };
+            mock_song_set.Object.AddRange(all_songs);
+            ConnectMocksToDataStore(all_songs);
+            List<UbiUser> user_ranking = repo.RankUsersByTotalDifferenial();
+            Assert.AreEqual("Sally", user_ranking[0].Name);
+            Assert.AreEqual("Austin", user_ranking[1].Name);
+            Assert.AreEqual("Bob", user_ranking[2].Name);
+        }
     }
 }

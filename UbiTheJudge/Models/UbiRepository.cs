@@ -141,5 +141,30 @@ namespace UbiTheJudge.Models
             List<Quartet> users_ranking = final_ranking.ToList();
             return users_ranking;
         }
+
+        public decimal TallyTotalDifferential(int user_id)
+        {
+            List<UserScore> user_scores = GetAllScoresForOneUserId(user_id);
+            decimal total_differential = 0m;
+            foreach (var score in user_scores)
+            {
+                Song this_song = (from song in _context.Songs where song.SongId == score.SongId select song).SingleOrDefault();
+                decimal differential_absolute_value = Math.Abs(CompareScores(this_song, score));
+                total_differential += differential_absolute_value;
+            }
+            return total_differential;
+        }
+
+        public List<UbiUser> RankUsersByTotalDifferenial()
+        {
+            var all_users = from user in _context.UbiUsers select user;
+            foreach (var user in all_users)
+            {
+                user.TD = TallyTotalDifferential(user.UbiUserId);
+            }
+            var final_ranking = from user in _context.UbiUsers orderby user.TD ascending select user;
+            List<UbiUser> TD_ranking = final_ranking.ToList();
+            return TD_ranking;
+        }
     }
 }

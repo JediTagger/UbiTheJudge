@@ -49,6 +49,12 @@ namespace UbiTheJudge.Tests
             CollectionAssert.AreEqual(list_of_scores, a_user.Scores);
         }
 
-
+        [TestMethod]
+        public void UbiUserCanHaveTotalDifferential()
+        {
+            UbiUser a_user = new UbiUser();
+            a_user.TD = 78.1m;
+            Assert.AreEqual(78.1m, a_user.TD);
+        }
     }
 }
