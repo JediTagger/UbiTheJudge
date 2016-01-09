@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace UbiTheJudge.Models
 {
     public class UserScore
     {
-        public decimal Score { get; set; }
+        [Key]
+        public int key { get; set; }
         public int SongId { get; set; }
         public int UbiUserId { get; set; }
+        public decimal Score { get; set; }
     }
 }

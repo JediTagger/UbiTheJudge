@@ -8,6 +8,7 @@ namespace UbiTheJudge.Models
     public class UbiRepository
     {
         public UbiContext _context;
+        public UbiContext Context { get { return _context; } }
 
         public UbiRepository()
         {
@@ -31,7 +32,7 @@ namespace UbiTheJudge.Models
             return query.SingleOrDefault();
         }
 
-        public bool IsHandleAvailable(string name)
+        public bool IsNameAvailable(string name)
         {
             bool available = false;
             try
@@ -57,6 +58,22 @@ namespace UbiTheJudge.Models
         {
             var query = from score in _context.Scores where score.UbiUserId == user_id && score.SongId == song_id select score;
             return query.SingleOrDefault();
+        }
+
+        public bool CreateQuartet(int quartet_id, string quartet_name, int order_of_appearance)
+        {
+            Quartet a_quartet = new Quartet { QuartetId = quartet_id, Name = quartet_name, D1OOA = order_of_appearance };
+            bool added = true;
+            try
+            {
+                _context.Quartets.Add(a_quartet);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                added = false;
+            }
+            return added;
         }
 
         public bool CreateScore(int user_id, int song_id, decimal user_song_score)
@@ -136,6 +153,7 @@ namespace UbiTheJudge.Models
             foreach (var quartet in all_quartets)
             {
                 quartet.US_Total = TallyUsersScores(quartet.QuartetId);
+                _context.SaveChanges();
             }
             var final_ranking = from quartet in _context.Quartets orderby quartet.US_Total descending select quartet;
             List<Quartet> users_ranking = final_ranking.ToList();
@@ -161,10 +179,28 @@ namespace UbiTheJudge.Models
             foreach (var user in all_users)
             {
                 user.TD = TallyTotalDifferential(user.UbiUserId);
+                _context.SaveChanges();
             }
             var final_ranking = from user in _context.UbiUsers orderby user.TD ascending select user;
             List<UbiUser> TD_ranking = final_ranking.ToList();
             return TD_ranking;
         }
+
+        public bool AddNewUser(ApplicationUser user)
+        {
+            UbiUser new_user = new UbiUser { RealUser = user, UbiUserId=1};
+            bool is_added = true;
+            try
+            {
+                UbiUser added_user = _context.UbiUsers.Add(new_user);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                is_added = false;
+            }
+            return is_added;
+        }
+
     }
 }

@@ -1,0 +1,20 @@
+﻿@model  IEnumerable<UbiTheJudge.Models.Quartet>
+
+@{
+    ViewBag.Title = "Score";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Score View</h2>
+
+<table>
+    @foreach (var quartet in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(q => quartet.Name)
+            </td>
+        </tr>
+    }
+</table>
+

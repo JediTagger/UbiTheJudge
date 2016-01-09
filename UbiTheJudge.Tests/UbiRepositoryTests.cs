@@ -145,7 +145,7 @@ namespace UbiTheJudge.Tests
         }
 
         [TestMethod]
-        public void UbiRepositoryIsHandleAvailable()
+        public void UbiRepositoryIsNameAvailable()
         {
             var expected = new List<UbiUser>
             {
@@ -156,8 +156,8 @@ namespace UbiTheJudge.Tests
             ConnectMocksToDataStore(expected);
             string name1 = "Bob";
             string name2 = "Bobby";
-            bool available1 = repo.IsHandleAvailable(name1);
-            bool available2 = repo.IsHandleAvailable(name2);
+            bool available1 = repo.IsNameAvailable(name1);
+            bool available2 = repo.IsNameAvailable(name2);
             Assert.IsFalse(available1);
             Assert.IsTrue(available2);
         }
@@ -209,6 +209,19 @@ namespace UbiTheJudge.Tests
             mock_score_set.Object.AddRange(users_scores);
             ConnectMocksToDataStore(users_scores);
             bool success = repo.CreateScore(user_id, song_id, user_song_score);
+            Assert.IsTrue(success);
+        }
+
+        [TestMethod]
+        public void UbiRepositoryCanCreateQuartets()
+        {
+            List<Quartet> all_quartets = new List<Quartet>();
+            int quartet_id = 1;
+            string quartet_name = "MC4";
+            int order_of_appearance = 1;
+            mock_quartet_set.Object.AddRange(all_quartets);
+            ConnectMocksToDataStore(all_quartets);
+            bool success = repo.CreateQuartet(quartet_id, quartet_name, order_of_appearance);
             Assert.IsTrue(success);
         }
 

@@ -10,6 +10,7 @@ namespace UbiTheJudge.Models
     {
         [Key]
         public int UbiUserId { get; set; }
+        public virtual ApplicationUser RealUser { get; set; }
         [Required]
         [MaxLength(20)]
         [MinLength(3)]
@@ -18,7 +19,7 @@ namespace UbiTheJudge.Models
         //TD means Total Differential.  The total difference between the users scores and the judges scores.
         //This is to rank the users by who got closest to the "right" (the judges) score.
         public decimal TD { get; set; }
-        public List<UserScore> Scores { get; set; }
+        public virtual List<UserScore> Scores { get; set; }
 
         //What does this do??
         public int CompareTo(object obj)
