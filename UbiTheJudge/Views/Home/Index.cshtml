@@ -5,13 +5,14 @@
 <br />
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
 
-        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            
-        <div><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></div>
+        @*
+    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        *@
+        <div class = "btn btn-default top-10px" style="width:100%"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></div>
     }
 }
 else

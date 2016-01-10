@@ -1,4 +1,5 @@
-﻿
+﻿@model UbiTheJudge.Models.Quartet
+
 @{
     ViewBag.Title = "CreateQuartet";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,27 +7,14 @@
 
 <h2>CreateQuartet</h2>
 
-@model UbiTheJudge.Models.Quartet
-
-@{
-    ViewBag.Title = "CreateQuartet";
-}
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
+        <h4>Quartet</h4>
         <hr />
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuartetId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuartetId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuartetId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -51,6 +39,6 @@
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<div>
+    @Html.ActionLink("Back To Scoring", "Test")
+</div>

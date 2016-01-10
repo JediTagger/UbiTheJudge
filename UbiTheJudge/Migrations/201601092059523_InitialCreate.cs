@@ -57,6 +57,14 @@ namespace UbiTheJudge.Migrations
                 .Index(t => t.UbiUserId);
             
             CreateTable(
+                "dbo.ScoreViewModels",
+                c => new
+                    {
+                        key = c.Int(nullable: false, identity: true),
+                    })
+                .PrimaryKey(t => t.key);
+            
+            CreateTable(
                 "dbo.Songs",
                 c => new
                     {
@@ -150,6 +158,7 @@ namespace UbiTheJudge.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.UbiUsers");
             DropTable("dbo.Songs");
+            DropTable("dbo.ScoreViewModels");
             DropTable("dbo.UserScores");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");

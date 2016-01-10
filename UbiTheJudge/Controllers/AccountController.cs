@@ -79,7 +79,7 @@ namespace UbiTheJudge.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Score", "Ubi");
+                    return RedirectToAction("Test", "Ubi");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -163,7 +163,7 @@ namespace UbiTheJudge.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Score", "Ubi");
+                    return RedirectToAction("Test", "Ubi");
                 }
                 AddErrors(result);
             }

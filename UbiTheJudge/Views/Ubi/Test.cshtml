@@ -1,0 +1,22 @@
+﻿@using UbiTheJudge.ViewModels;
+
+@model ScoreViewModel
+
+<table class="top-10px">
+    @foreach (var quartet in Model.Quartets)
+    {
+        <tr>
+            <th>@quartet.Name</th>
+        </tr>
+        foreach (var song in Model.Songs)
+        {
+            if (quartet.QuartetId == song.QuartetId)
+            {
+                <tr>
+                    <td>@song.Name</td>
+                    <td><input /></td>
+                </tr>
+            }
+        }
+    }
+</table>

@@ -54,15 +54,21 @@ namespace UbiTheJudge.Models
             return query.ToList();
         }
 
+        public List<Song> GetAllSongs()
+        {
+            var all_songs = from song in _context.Songs select song;
+            return all_songs.ToList();
+        }
+
         public UserScore GetUserScoreForOneSong(int user_id, int song_id)
         {
             var query = from score in _context.Scores where score.UbiUserId == user_id && score.SongId == song_id select score;
             return query.SingleOrDefault();
         }
 
-        public bool CreateQuartet(int quartet_id, string quartet_name, int order_of_appearance)
+        public bool CreateQuartet(string quartet_name, int day_one_order_of_appearance)
         {
-            Quartet a_quartet = new Quartet { QuartetId = quartet_id, Name = quartet_name, D1OOA = order_of_appearance };
+            Quartet a_quartet = new Quartet { Name = quartet_name, D1OOA = day_one_order_of_appearance };
             bool added = true;
             try
             {

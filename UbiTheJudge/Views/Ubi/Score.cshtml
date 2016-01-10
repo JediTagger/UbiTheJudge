@@ -1,20 +1,31 @@
-﻿@model  IEnumerable<UbiTheJudge.Models.Quartet>
+﻿@using UbiTheJudge.ViewModels;
 
-@{
-    ViewBag.Title = "Score";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Score View</h2>
+@model ScoreViewModel
 
 <table>
-    @foreach (var quartet in Model)
+    <tr>
+        <th>
+            Quartet
+        </th>
+    </tr>
+    @foreach (var quartet in Model.Quartets)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(q => quartet.Name)
-            </td>
+            <td>@quartet.Name</td>
         </tr>
     }
 </table>
 
+<table>
+    <tr>
+        <th>
+            Song
+        </th>
+    </tr>
+    @foreach (var song in Model.Songs)
+    {
+        <tr>
+            <td>@song.Name</td>
+        </tr>
+    }
+</table>

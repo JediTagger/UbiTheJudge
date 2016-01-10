@@ -216,12 +216,11 @@ namespace UbiTheJudge.Tests
         public void UbiRepositoryCanCreateQuartets()
         {
             List<Quartet> all_quartets = new List<Quartet>();
-            int quartet_id = 1;
             string quartet_name = "MC4";
             int order_of_appearance = 1;
             mock_quartet_set.Object.AddRange(all_quartets);
             ConnectMocksToDataStore(all_quartets);
-            bool success = repo.CreateQuartet(quartet_id, quartet_name, order_of_appearance);
+            bool success = repo.CreateQuartet(quartet_name, order_of_appearance);
             Assert.IsTrue(success);
         }
 

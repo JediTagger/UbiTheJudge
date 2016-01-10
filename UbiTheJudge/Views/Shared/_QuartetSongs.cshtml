@@ -1,0 +1,58 @@
+﻿@model IEnumerable<UbiTheJudge.Models.Song>
+
+@{
+    ViewBag.Title = "_QuartetSongs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>_QuartetSongs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DaySung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JudgesScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderSung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuartetId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaySung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JudgesScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderSung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuartetId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SongId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SongId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SongId })
+        </td>
+    </tr>
+}
+
+</table>

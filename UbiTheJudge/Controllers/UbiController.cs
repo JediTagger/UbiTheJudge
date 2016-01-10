@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using UbiTheJudge.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using UbiTheJudge.ViewModels;
 
 namespace UbiTheJudge.Controllers
 {
@@ -17,6 +18,8 @@ namespace UbiTheJudge.Controllers
         {
             Repo = new UbiRepository();
         }
+
+        private UbiContext db = new UbiContext();
 
         // GET: Ubi
         public ActionResult Score()
@@ -32,10 +35,28 @@ namespace UbiTheJudge.Controllers
             {
                 bool successful = Repo.AddNewUser(real_user);
             }
-            
             List<Quartet> all_quartets = Repo.RankByOOA();
             return View(all_quartets);
-            
+        }
+
+        public ActionResult Test()
+        {
+            /*
+            var viewModel = new ScoreViewModel
+            {
+                Quartets = Repo.RankByOOA(),
+                Songs = Repo.GetAllSongs()
+            };
+            */
+            ScoreViewModel viewModel = new ScoreViewModel();
+            viewModel.Songs = Repo.GetAllSongs();
+            viewModel.Quartets = Repo.RankByOOA();
+            return View(viewModel);
+        }
+
+        public ActionResult Empty()
+        {
+            return View();
         }
 
         // GET: Ubi/Details/5
@@ -56,13 +77,17 @@ namespace UbiTheJudge.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateQuartet([Bind(Include = "QuartetId,Name,D1OOA")] Quartet quartet)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateQuartet([Bind(Include = "Name,D1OOA")] Quartet quartet)
         {
             if (ModelState.IsValid)
             {
-                Repo.CreateQuartet(quartet.QuartetId, quartet.Name, quartet.D1OOA);
+                db.Quartets.Add(quartet);
+                db.SaveChanges();
+                return RedirectToAction("Test");
             }
-            return RedirectToAction("CreateQuartet");
+
+            return View(quartet);
         }
 
         // POST: Ubi/Create

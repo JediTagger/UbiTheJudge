@@ -12,5 +12,12 @@ namespace UbiTheJudge.Models
         public virtual DbSet<UserScore> Scores { get; set; }
         public virtual DbSet<Quartet> Quartets { get; set; }
         public virtual DbSet<Song> Songs { get; set; }
+
+        
+        public virtual DbSet<ViewModels.ScoreViewModel> ScoreViewModels { get; set; }
+        
+        /*
+        public System.Data.Entity.DbSet<UbiTheJudge.ViewModels.ScoreViewModel> ScoreViewModels { get; set; }
+        */
     }
 }
