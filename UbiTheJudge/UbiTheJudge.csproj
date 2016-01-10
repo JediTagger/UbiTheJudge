@@ -185,9 +185,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601092059523_InitialCreate.cs" />
-    <Compile Include="Migrations\201601092059523_InitialCreate.Designer.cs">
-      <DependentUpon>201601092059523_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201601101732102_InitialCreate.cs" />
+    <Compile Include="Migrations\201601101732102_InitialCreate.Designer.cs">
+      <DependentUpon>201601101732102_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -262,12 +262,15 @@
     <Content Include="Views\Ubi\CreateQuartet.cshtml" />
     <Content Include="Views\Shared\_QuartetSongs.cshtml" />
     <Content Include="Views\Ubi\Test.cshtml" />
-    <Content Include="Views\Ubi\Empty.cshtml" />
     <Content Include="Views\Quartets\Create.cshtml" />
     <Content Include="Views\Quartets\Delete.cshtml" />
     <Content Include="Views\Quartets\Details.cshtml" />
     <Content Include="Views\Quartets\Edit.cshtml" />
     <Content Include="Views\Quartets\Index.cshtml" />
+    <Content Include="Views\Ubi\CreateScore.cshtml" />
+    <Content Include="Views\Ubi\ViewScores.cshtml" />
+    <Content Include="Views\Ubi\ViewScoresPlease.cshtml" />
+    <Content Include="Views\Ubi\ViewAndCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,8 +284,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601092059523_InitialCreate.resx">
-      <DependentUpon>201601092059523_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601101732102_InitialCreate.resx">
+      <DependentUpon>201601101732102_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

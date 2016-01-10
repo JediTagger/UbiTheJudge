@@ -11,7 +11,8 @@ namespace UbiTheJudge.ViewModels
     {
         [Key]
         public int key { get; set; }
-        public IEnumerable<UbiTheJudge.Models.Quartet> Quartets { get; set; }
-        public IEnumerable<UbiTheJudge.Models.Song> Songs { get; set; }
+        public IEnumerable<Quartet> Quartets { get; set; }
+        public IEnumerable<Song> Songs { get; set; }
+        public IEnumerable<UserScore> Scores { get; set; }
     }
 }

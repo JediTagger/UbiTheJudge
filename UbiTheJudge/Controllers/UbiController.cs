@@ -48,15 +48,55 @@ namespace UbiTheJudge.Controllers
                 Songs = Repo.GetAllSongs()
             };
             */
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
+            UbiUser me = null;
+            try
+            {
+                me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).SingleOrDefault();
+            }
+            catch (Exception)
+            {
+                bool successful = Repo.AddNewUser(real_user);
+            }
             ScoreViewModel viewModel = new ScoreViewModel();
             viewModel.Songs = Repo.GetAllSongs();
             viewModel.Quartets = Repo.RankByOOA();
+            viewModel.Scores = Repo.GetAllScoresForOneUserId(1);
             return View(viewModel);
         }
 
-        public ActionResult Empty()
+        public ActionResult ViewScores()
+        {
+            string user_id = User.Identity.GetUserId();
+            UbiUser me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).SingleOrDefault();
+            List<UserScore> user_scores = Repo.GetAllScoresForOneUserId(me.UbiUserId);
+            return View(user_scores);
+        }
+
+        public ActionResult ViewScoresPlease()
+        {
+            List<UserScore> user_scores = Repo.GetAllScoresForOneUserId(1);
+            return View(user_scores);
+        }
+
+        public ActionResult ViewAndCreate()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ViewAndCreate([Bind(Include = "SongId,Score")] UserScore score)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Scores.Add(score);
+                db.SaveChanges();
+                return RedirectToAction("Test");
+            }
+            List<Song> all_songs = Repo.GetAllSongs();
+            return View(all_songs);
         }
 
         // GET: Ubi/Details/5
@@ -88,6 +128,25 @@ namespace UbiTheJudge.Controllers
             }
 
             return View(quartet);
+        }
+
+        public ActionResult CreateScore()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateScore([Bind(Include = "SongId,UbiUserId,Score")] UserScore user_score)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Scores.Add(user_score);
+                db.SaveChanges();
+                return RedirectToAction("Test");
+            }
+
+            return View(user_score);
         }
 
         // POST: Ubi/Create

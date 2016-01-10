@@ -16,7 +16,10 @@ namespace UbiTheJudge.Migrations
         protected override void Seed(UbiTheJudge.Models.UbiContext context)
         {
             context.Quartets.AddOrUpdate(q => q.QuartetId,
-                new Quartet() { QuartetId = 1, Name = "MC4", D1OOA = 1, D2OOA = 1, JS_Total = 1.1m, US_Total = 1.1m}
+                new Quartet() { QuartetId = 1, Name = "MC4", D1OOA = 1, D2OOA = 1, JS_Total = 1.1m, US_Total = 1.1m },
+                new Quartet() { QuartetId = 2, Name = "Realtime", D1OOA = 2, D2OOA = 2, JS_Total = 1.1m, US_Total = 1.1m },
+                new Quartet() { QuartetId = 3, Name = "Acoustix", D1OOA = 3, D2OOA = 3, JS_Total = 1.1m, US_Total = 1.1m },
+                new Quartet() { QuartetId = 4, Name = "Nightlife", D1OOA = 4, D2OOA = 4, JS_Total = 1.1m, US_Total = 1.1m }
                 );
             context.Songs.AddOrUpdate(s => s.SongId,
                 new Song() { SongId = 1, Name = "Nellie", DaySung = 1, QuartetId = 1, OrderSung = 1, JudgesScore = 61.1m },
@@ -34,23 +37,23 @@ namespace UbiTheJudge.Migrations
                 new UbiUser() { UbiUserId = 3, Name = "Fred" },
                 new UbiUser() { UbiUserId = 4, Name = "Mary" }
                 );
-            context.Scores.AddOrUpdate(sc => sc.SongId,
-                new UserScore() { UbiUserId = 1, SongId = 1, Score = 50.0m },
-                new UserScore() { UbiUserId = 1, SongId = 2, Score = 50.0m },
-                new UserScore() { UbiUserId = 1, SongId = 3, Score = 50.0m },
-                new UserScore() { UbiUserId = 1, SongId = 4, Score = 50.0m },
-                new UserScore() { UbiUserId = 2, SongId = 1, Score = 60.0m },
-                new UserScore() { UbiUserId = 2, SongId = 2, Score = 60.0m },
-                new UserScore() { UbiUserId = 2, SongId = 3, Score = 60.0m },
-                new UserScore() { UbiUserId = 2, SongId = 4, Score = 60.0m },
-                new UserScore() { UbiUserId = 3, SongId = 1, Score = 70.0m },
-                new UserScore() { UbiUserId = 3, SongId = 2, Score = 70.0m },
-                new UserScore() { UbiUserId = 3, SongId = 3, Score = 70.0m },
-                new UserScore() { UbiUserId = 3, SongId = 4, Score = 70.0m },
-                new UserScore() { UbiUserId = 4, SongId = 1, Score = 80.0m },
-                new UserScore() { UbiUserId = 4, SongId = 2, Score = 80.0m },
-                new UserScore() { UbiUserId = 4, SongId = 3, Score = 80.0m },
-                new UserScore() { UbiUserId = 4, SongId = 4, Score = 80.0m }
+            context.Scores.AddOrUpdate(sc => sc.Score,
+                new UserScore() { UbiUserId = 1, SongId = 1, Score = 50.1m },
+                new UserScore() { UbiUserId = 1, SongId = 2, Score = 50.2m },
+                new UserScore() { UbiUserId = 1, SongId = 3, Score = 50.3m },
+                new UserScore() { UbiUserId = 1, SongId = 4, Score = 50.4m },
+                new UserScore() { UbiUserId = 2, SongId = 1, Score = 60.1m },
+                new UserScore() { UbiUserId = 2, SongId = 2, Score = 60.2m },
+                new UserScore() { UbiUserId = 2, SongId = 3, Score = 60.3m },
+                new UserScore() { UbiUserId = 2, SongId = 4, Score = 60.4m },
+                new UserScore() { UbiUserId = 3, SongId = 1, Score = 70.1m },
+                new UserScore() { UbiUserId = 3, SongId = 2, Score = 70.2m },
+                new UserScore() { UbiUserId = 3, SongId = 3, Score = 70.3m },
+                new UserScore() { UbiUserId = 3, SongId = 4, Score = 70.4m },
+                new UserScore() { UbiUserId = 4, SongId = 1, Score = 80.1m },
+                new UserScore() { UbiUserId = 4, SongId = 2, Score = 80.2m },
+                new UserScore() { UbiUserId = 4, SongId = 3, Score = 80.3m },
+                new UserScore() { UbiUserId = 4, SongId = 4, Score = 80.4m }
                 );
             //  This method will be called after migrating to the latest version.
 

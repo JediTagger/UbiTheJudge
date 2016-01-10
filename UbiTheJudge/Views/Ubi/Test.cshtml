@@ -8,14 +8,28 @@
         <tr>
             <th>@quartet.Name</th>
         </tr>
+        <tr>
+            <th>Song</th>
+            <th>Song ID</th>
+            <th>My Score</th>
+        </tr>
         foreach (var song in Model.Songs)
         {
             if (quartet.QuartetId == song.QuartetId)
             {
                 <tr>
                     <td>@song.Name</td>
-                    <td><input /></td>
+                    <td>@song.SongId</td>
                 </tr>
+                foreach (var score in Model.Scores)
+                {
+                    if (song.SongId == score.SongId)
+                    {
+                        <tr>
+                            <td>@score.Score</td>
+                        </tr>
+                    }
+                }
             }
         }
     }

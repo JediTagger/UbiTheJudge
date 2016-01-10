@@ -13,7 +13,7 @@ namespace UbiTheJudge.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201601092059523_InitialCreate"; }
+            get { return "201601101732102_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

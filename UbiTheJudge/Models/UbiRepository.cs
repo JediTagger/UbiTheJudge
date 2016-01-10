@@ -194,7 +194,7 @@ namespace UbiTheJudge.Models
 
         public bool AddNewUser(ApplicationUser user)
         {
-            UbiUser new_user = new UbiUser { RealUser = user, UbiUserId=1};
+            UbiUser new_user = new UbiUser { RealUser = user };
             bool is_added = true;
             try
             {
