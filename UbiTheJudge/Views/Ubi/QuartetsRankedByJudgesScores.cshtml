@@ -1,0 +1,50 @@
+﻿@model IEnumerable<UbiTheJudge.Models.Quartet>
+
+@{
+    ViewBag.Title = "QuartetsRankedByJudgesScores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>QuartetsRankedByJudgesScores</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.D1OOA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.D2OOA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JS_Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.US_Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.D1OOA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.D2OOA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JS_Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.US_Total)
+        </td>
+    </tr>
+}
+
+</table>

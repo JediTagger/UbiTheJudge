@@ -261,7 +261,7 @@
     <Content Include="Views\Ubi\Score.cshtml" />
     <Content Include="Views\Ubi\CreateQuartet.cshtml" />
     <Content Include="Views\Shared\_QuartetSongs.cshtml" />
-    <Content Include="Views\Ubi\Test.cshtml" />
+    <Content Include="Views\Ubi\Program.cshtml" />
     <Content Include="Views\Quartets\Create.cshtml" />
     <Content Include="Views\Quartets\Delete.cshtml" />
     <Content Include="Views\Quartets\Details.cshtml" />
@@ -271,6 +271,9 @@
     <Content Include="Views\Ubi\ViewScores.cshtml" />
     <Content Include="Views\Ubi\ViewScoresPlease.cshtml" />
     <Content Include="Views\Ubi\ViewAndCreate.cshtml" />
+    <Content Include="Views\Ubi\QuartetsRankedByJudgesScores.cshtml" />
+    <Content Include="Views\Ubi\UsersRanked.cshtml" />
+    <Content Include="Views\Ubi\CreateSong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

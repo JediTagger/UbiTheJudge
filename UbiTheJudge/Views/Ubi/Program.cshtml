@@ -2,30 +2,28 @@
 
 @model ScoreViewModel
 
-<table class="top-10px">
+<table>
     @foreach (var quartet in Model.Quartets)
     {
         <tr>
-            <th>@quartet.Name</th>
-        </tr>
-        <tr>
-            <th>Song</th>
-            <th>Song ID</th>
-            <th>My Score</th>
+            <th style="font-size:large;padding-top:10px">ID @quartet.QuartetId <span style="color:darkblue">@quartet.Name</span></th>
         </tr>
         foreach (var song in Model.Songs)
         {
             if (quartet.QuartetId == song.QuartetId)
             {
                 <tr>
-                    <td>@song.Name</td>
-                    <td>@song.SongId</td>
+                    <th style="padding-top:10px;text-align:center">Song ID</th>
+                    <td style="padding-top:10px">@song.SongId</td>
+                    <th style="padding-right:10px;padding-top:10px">Song</th>
+                    <td style="padding-top:10px">@song.Name</td>
                 </tr>
                 foreach (var score in Model.Scores)
                 {
                     if (song.SongId == score.SongId)
                     {
                         <tr>
+                            <th style="text-align:center">My Score</th>
                             <td>@score.Score</td>
                         </tr>
                     }

@@ -39,7 +39,8 @@ namespace UbiTheJudge.Controllers
             return View(all_quartets);
         }
 
-        public ActionResult Test()
+        [Authorize]
+        public ActionResult Program()
         {
             /*
             var viewModel = new ScoreViewModel
@@ -111,6 +112,7 @@ namespace UbiTheJudge.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult CreateQuartet()
         {
             return View();
@@ -124,12 +126,13 @@ namespace UbiTheJudge.Controllers
             {
                 db.Quartets.Add(quartet);
                 db.SaveChanges();
-                return RedirectToAction("Test");
+                return RedirectToAction("Program");
             }
 
             return View(quartet);
         }
 
+        [Authorize]
         public ActionResult CreateScore()
         {
             return View();
@@ -143,10 +146,48 @@ namespace UbiTheJudge.Controllers
             {
                 db.Scores.Add(user_score);
                 db.SaveChanges();
-                return RedirectToAction("Test");
+                return RedirectToAction("Program");
             }
 
             return View(user_score);
+        }
+
+        [Authorize]
+        public ActionResult CreateSong()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateSong([Bind(Include = "Name,QuartetId")] Song song)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Songs.Add(song);
+                db.SaveChanges();
+                return RedirectToAction("Program");
+            }
+
+            return View(song);
+        }
+
+        public ActionResult UsersRanked()
+        {
+            List<UbiUser> users_ranked = Repo.RankUsersByTotalDifferenial();
+            return View(users_ranked);
+        }
+
+        public ActionResult QuartetsRankedByJudgesScores()
+        {
+            List<Quartet> quartets_ranked_by_judges_scores = Repo.RankByJudgesScores();
+            return View(quartets_ranked_by_judges_scores);
+        }
+
+        public ActionResult QuartetsRankedByUsersScores()
+        {
+            List<Quartet> quartets_ranked_by_users_scores = Repo.RankByUsersScores();
+            return View(quartets_ranked_by_users_scores);
         }
 
         // POST: Ubi/Create
